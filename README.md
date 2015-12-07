@@ -1,26 +1,24 @@
-# Jekyll Base Project
+# Jekyll Base Project [Foundation]
 
-Just as it sounds. This is a clean base for starting Jekyll static site projects. This setup is designed more for a
+This is a clean base for starting Jekyll static site projects using Zurb Foundation. This setup is designed more for a
 standard static website (eg. landing site, company website, etc.) and less for a blogging site. This can definitely
-be modified to be used as a Jekyll blog, if desired (shouldn't take too much time at all, actually). Or you can just
-use plain jane, out-of-the-box [Jekyll](http://jekyllrb.com/).
+be modified to be used as a Jekyll blog, if desired - but that wasn't my intention with this.
 
-I'm using...
+This is using...
 - [Jekyll](http://jekyllrb.com/) static site generation
-- [Bootstrap](http://getbootstrap.com/) CSS framework via [Bootstrap Sass](https://github.com/twbs/bootstrap-sass)
+- [Foundation](http://foundation.zurb.com/) CSS framework (currently version 5 - [docs here](http://foundation.zurb.com/sites/docs/v/5.5.3/))
 - [Jekyll Assets](https://github.com/ixti/jekyll-assets) asset pipeline
 - [FontAwesome](http://fortawesome.github.io/Font-Awesome/) via [FontAwesome Sass](https://github.com/FortAwesome/font-awesome-sass)
 - [S3 Website](https://github.com/laurilehmijoki/s3_website) to deploy to S3 [Amazon Web Services S3](http://aws.amazon.com/s3/).
 
-I typically use (baked right into Jekyll)...
-- [Sass (SCSS)](http://sass-lang.com/) CSS pre-processor
-- [CoffeeScript](http://coffeescript.org/) for our site's Javascript
 
 # Getting started
 
 ## 1. Prerequisites
 
-We use [Bundler](http://bundler.io/) to manage all of the project assets, so you need to make sure you have that installed.
+### 1.1 Bundler
+
+We use [Bundler](http://bundler.io/) to manage a bunch of the project assets and requirements, so you need to make sure you have that installed.
 
 You can install it by running:
 
@@ -28,9 +26,22 @@ You can install it by running:
 gem install bundler
 ```
 
+### 1.2 Bower
+
+We use [Bower](http://bower.io/) to manage the rest of the project assets.
+
+You can install it by running:
+
+```
+npm install -g bower
+```
+
+
 ## 2. Install Requirements
 
-Since we Bundler, this is super easy. All of the project requirements are detailed in the project's `Gemfile` file.
+Since we Bundler and Bower, this is super easy. All of the project requirements are detailed in the project's `Gemfile` and `bower.json` files.
+
+### 2.1 Bundler
 
 Just run the following command:
 
@@ -44,10 +55,18 @@ Or if you don't want to deploy to S3:
 bundle install --without deploy
 ```
 
+### 2.2 Bower
+
+Then install the remaining requirements with the following:
+
+```
+bower install
+```
+
 
 ## 3. Go at it...
 
-Jekyll comes shipped with a development server and we use [Jekyll Assets](https://github.com/ixti/jekyll-assets) to manage all of our assets, so... just go at it bro.
+Jekyll comes shipped with a development server and we use [Jekyll Assets](https://github.com/ixti/jekyll-assets) to manage all of our assets, so... just go at it... bro.
 
 ### Serve:
 
@@ -73,6 +92,10 @@ jekyll build --watch
 
 # Deploying
 
+Once you're ready to deploy, make sure to run `jekyll build` first to clean out any old or cached asset files, then follow on of the following instructions:
+
+## Amazon S3 (Optional)
+
 Deploying to S3 is easypeezy with [S3 Website](https://github.com/laurilehmijoki/s3_website).
 
 ### 1. Config
@@ -86,6 +109,11 @@ Run the following command and all will be live:
 ```
 s3_website push
 ```
+
+## Manually
+
+All of the compiled and generated files reside in the `_site` directory. Simply toss all of the files in `_site`, as is, to whatever hosting platform you're using (via FTP,
+SSH, etc.) and you're done!
 
 # DOM-based Routing
 
