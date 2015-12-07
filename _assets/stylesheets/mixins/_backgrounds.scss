@@ -1,0 +1,24 @@
+// Background image
+@mixin bg-img($url, $width: auto, $height: auto) {
+    width: $width;
+    height: $height;
+    background-image: url($url);
+    background-size: $width $height;
+    background-repeat: no-repeat;
+}
+
+// Background sprite
+@mixin bg-sprite($url, $position: 0 0, $width: auto, $height: auto) {
+    width: $width;
+    height: $height;
+    background-image: url($url);
+    background-position: $position;
+    background-repeat: no-repeat;
+}
+
+// Background sprite positioning
+@mixin bg-sprite-pos($position, $width: auto, $height: auto) {
+    width: $width;
+    height: $height;
+    background-position: $position;
+}

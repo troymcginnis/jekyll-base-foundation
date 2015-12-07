@@ -1,0 +1,260 @@
+// Troy McGinnis mixins
+// URI: troymcginnis.com
+// Updated: November 27, 2015
+// -------------------------
+
+$breakpoint:            $medium-up;
+
+
+// Reponsive/Positioning Mixins
+// -------------------------
+
+// Responsive spacing
+@mixin responsive-spacing($spacing-type, $spacing-top, $spacing-bottom: $spacing-top, $scale-sm: 0.5, $scale-md: 0.75) {
+
+    // Mobile
+    #{$spacing-type}-top: $spacing-top * $scale-sm;
+    #{$spacing-type}-bottom: $spacing-bottom * $scale-sm;
+
+    // Medium screens
+    @media #{$medium-up} {
+        #{$spacing-type}-top: $spacing-top * $scale-md;
+        #{$spacing-type}-bottom: $spacing-bottom * $scale-md;
+    }
+
+    // Large screens
+    @media #{$large-up} {
+        #{$spacing-type}-top: $spacing-top;
+        #{$spacing-type}-bottom: $spacing-bottom;
+    }
+}
+
+// Shorthand for padding
+@mixin responsive-padding($padding-top, $padding-bottom: $padding-top, $scale-sm: 0.5, $scale-md: 0.75) {
+    @include responsive-spacing(padding, $padding-top, $padding-bottom, $scale-sm, $scale-md);
+}
+
+// Shorthand for margin
+@mixin responsive-margin($margin-top, $margin-bottom: $margin-top, $scale-sm: 0.5, $scale-md: 0.75) {
+    @include responsive-spacing(margin, $margin-top, $margin-bottom, $scale-sm, $scale-md);
+}
+
+// Responsive scaling
+@mixin responsive-scaling($max-height, $max-width: $screen-xl-min) {
+
+    @media #{$medium-up} {
+        min-height: 0;
+        height: $max-height * ($screen-md-min/$screen-xl-min);
+    }
+
+    @media #{$large-up} {
+        height: $max-height * ($screen-lg-min/$screen-xl-min);
+    }
+
+    @media #{$xlarge-up} {
+        height: $max-height;
+    }
+}
+
+// Responsive font sizing
+@mixin responsive-font($font-size-full, $scale-amount: 0.75) {
+    font-size: $font-size-full * $scale-amount;
+
+    @media #{$breakpoint} {
+        font-size: $font-size-full;
+    }
+}
+
+// Sectional
+@mixin sectional($sectional-padding, $sectional-padding-spacey: $sectional-padding * 1.5) {
+    @include responsive-padding($sectional-padding);
+
+    &.sectional-flush-bottom {
+        padding-bottom: 0 !important;
+    }
+
+    &.sectional-flush-top {
+        padding-top: 0 !important;
+    }
+}
+
+// Vertical center
+@mixin v-center() {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+// Type Mixins
+// -------------------------
+
+// Sexy font shadows
+@mixin retro-shadow($color-base, $color-middle: none, $multiplier: 1) {
+    @if $color-middle != none {
+        text-shadow: 1px*$multiplier 2px*$multiplier $color-middle, 3px*$multiplier 4px*$multiplier 0 $color-base;
+    }
+    @else {
+        text-shadow: 4px*$multiplier 3px*$multiplier 0 $color-base;
+    }
+}
+
+// Link colours
+@mixin link-color($color, $color-hover: darken($color, 10%)) {
+    color: $color;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-hover;
+    }
+}
+
+@mixin exo-title-font($letter-spacing: 1.5) {
+    font-family: $font-family-exo;
+    text-transform: uppercase;
+    letter-spacing: rem-calc($letter-spacing);
+}
+
+
+// Image Mixins
+// -------------------------
+
+// Background image images
+@mixin background-image($image-path, $width, $height) {
+    width: $width;
+    height: $height;
+    max-width: 100%;
+    background-repeat: no-repeat;
+    background-image: url($image-path);
+}
+
+
+// Vendor Mixins
+// -------------------------
+
+// Vendor Prefixes
+@mixin transform-style($style) {
+  -webkit-transform-style: $style;
+     -moz-transform-style: $style;
+      -ms-transform-style: $style;
+          transform-style: $style;
+}
+
+@mixin transform($transform) {
+  -webkit-transform: $transform;
+      -ms-transform: $transform;
+       -o-transform: $transform;
+          transform: $transform;
+}
+
+// Misc Mixins
+// -------------------------
+
+// List separator
+@mixin list-separator($font-size: $base-font-size, $padding: 20px, $height: $base-font-size, $width: 2px, $top: $base-font-size, $color: $brown) {
+    font-size: 0;
+
+    > li {
+        font-size: $font-size;
+        padding-left: $padding;
+        padding-right: $padding;
+        position: relative;
+
+        &:after {
+            content: "";
+            top: $top;
+            right: 0;
+            height: $height;
+            border-right: $width solid $color;
+            position: absolute;
+        }
+
+        &:last-child,
+        &.no-separator {
+
+            &:after {
+                border-right: 0;
+            }
+        }
+    }
+}
+
+// Extending line
+@mixin line-effect(
+        $length:    140px,
+        $y-end:     -50px,
+        $x-end:     -210px,
+        $y-start:   -2px,
+        $x-start:   -90px,
+        $angle:     43deg,
+        $thickness: 1px,
+        $hover:     false,
+        $display:   $large-up,
+        $duration:  0.3s,
+        $duration-hover: 0.1s
+    ) {
+
+    @media #{$display} {
+        position: relative;
+
+        &:before,
+        &:after {
+            content: "";
+            width: 0px;
+            height: $thickness;
+            position: absolute;
+            background-color: white;
+            transform: rotateZ($angle);
+            @include transition($duration, all, ease-out);
+        }
+
+        &:before {
+            top: $y-start;
+            left: 50%;
+            margin-left: $x-start;
+        }
+
+        &:after {
+            bottom: $y-start;
+            right: 50%;
+            margin-right: $x-start;
+        }
+
+        &.extended,
+        &.static,
+        &.hover:hover {
+
+            &:before {
+                top: $y-end;
+                left: 50%;
+                margin-left: $x-end;
+                width: $length;
+            }
+
+            &:after {
+                bottom: $y-end;
+                right: 50%;
+                margin-right: $x-end;
+                width: $length;
+            }
+        }
+
+        &.hover:hover {
+            &:before,
+            &:after {
+                @include transition($duration-hover, all, ease-out);
+            }
+        }
+
+        &.static {
+
+            &:before,
+            &:after {
+                -webkit-transition: none;
+                -o-transition: none;
+                transition: none;
+            }
+        }
+    }
+}

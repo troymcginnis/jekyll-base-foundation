@@ -1,0 +1,25 @@
+// Responsive padding
+@mixin responsive-padding($padding, $mobile-divide: 3, $big-multiply: 1.5) {
+
+    // Calculate the responsive padding
+    $mobile: null;
+    $big: null;
+
+    @for $i from 1 through length($padding) {
+        $mobile: append($mobile, nth($padding, $i) / $mobile-divide);
+        $big: append($big, nth($padding, $i) * $big-multiply);
+    }
+
+    // Make it so
+    padding: $mobile;
+
+    // Mobile
+    @media screen and (min-width: $screen-sm-min) {
+        padding: $padding;
+    }
+
+    // Big desktops
+    @media screen and (min-width: 1921px) {
+        padding: $big;
+    }
+}

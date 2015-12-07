@@ -1,0 +1,24 @@
+// Custom variables
+@import "settings";
+
+/***********************************/
+// Vendor imports
+@import "foundation";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+/***********************************/
+
+// Custom mixins
+@import "mixins";
+
+// Common
+@import "common/global";
+@import "common/type";
+
+// Components
+@import "components/navbar";
+@import "components/buttons";
+@import "components/jumbotron";
+
+// Pages
+@import "pages/home";

@@ -1,0 +1,14 @@
+//
+// Type
+// --------------------------------------------------
+
+$colors:
+    'white'     $white,
+    'primary'   $primary-color,
+    'secondary' $secondary-color,
+;
+
+@each $name, $color in $colors {
+    .text-#{$name} { color: $color; }
+    .link-#{$name} { @include link-color($color); }
+}
