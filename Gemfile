@@ -9,10 +9,6 @@ group :jekyll_assets do
     gem "sass-rails"
 end
 
-group :bootstrap do
-    gem "bootstrap-sass"
-end
-
 group :deploy do
     gem "s3_website"
 end
