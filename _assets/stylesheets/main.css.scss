@@ -1,9 +1,12 @@
 // Custom variables
-@import "settings";
+// @import "settings/settings";
 
 /***********************************/
 // Vendor imports
 @import "foundation";
+@include foundation-everything;
+
+@import "motion-ui";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 /***********************************/

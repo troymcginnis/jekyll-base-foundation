@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "private": "true",
   "dependencies": {
-    "foundation": "zurb/bower-foundation",
-    "jquery": "*",
-    "modernizr": "*"
+    "foundation-sites": "~6.0.5",
+    "modernizr": "~2.8.3",
+    "jquery": "~2.1.4"
+  },
+  "devDependencies": {
+    "motion-ui": "~1.1.1"
   }
 }

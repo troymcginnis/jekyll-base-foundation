@@ -1,6 +1,6 @@
 # Jekyll Base Project [Foundation]
 
-This is a clean base for starting Jekyll static site projects using Zurb Foundation. This setup is designed more for a
+This is a clean base for starting Jekyll static site projects using Zurb Foundation 6. This setup is designed more for a
 standard static website (eg. landing site, company website, etc.) and less for a blogging site. This can definitely
 be modified to be used as a Jekyll blog, if desired - but that wasn't my intention with this.
 

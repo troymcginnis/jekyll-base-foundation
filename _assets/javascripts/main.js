@@ -10,9 +10,10 @@
  * always reference jQuery with $, even when in .noConflict() mode.
  * ======================================================================== */
 
-//= require modernizr
 //= require jquery
-//= require foundation
+//= require modernizr
+//= require motion-ui
+//= require vendor/foundation
 
 
 (function($) {

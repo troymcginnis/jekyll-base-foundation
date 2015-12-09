@@ -1,9 +1,7 @@
 // Troy McGinnis mixins
 // URI: troymcginnis.com
-// Updated: November 27, 2015
+// Updated: December 9, 2015
 // -------------------------
-
-$breakpoint:            $medium-up;
 
 
 // Reponsive/Positioning Mixins
@@ -17,13 +15,13 @@ $breakpoint:            $medium-up;
     #{$spacing-type}-bottom: $spacing-bottom * $scale-sm;
 
     // Medium screens
-    @media #{$medium-up} {
+    @include breakpoint(medium) {
         #{$spacing-type}-top: $spacing-top * $scale-md;
         #{$spacing-type}-bottom: $spacing-bottom * $scale-md;
     }
 
     // Large screens
-    @media #{$large-up} {
+    @include breakpoint(large) {
         #{$spacing-type}-top: $spacing-top;
         #{$spacing-type}-bottom: $spacing-bottom;
     }
@@ -42,16 +40,16 @@ $breakpoint:            $medium-up;
 // Responsive scaling
 @mixin responsive-scaling($max-height, $max-width: $screen-xl-min) {
 
-    @media #{$medium-up} {
+    @include breakpoint(medium) {
         min-height: 0;
         height: $max-height * ($screen-md-min/$screen-xl-min);
     }
 
-    @media #{$large-up} {
+    @include breakpoint(large) {
         height: $max-height * ($screen-lg-min/$screen-xl-min);
     }
 
-    @media #{$xlarge-up} {
+    @include breakpoint(xlarge) {
         height: $max-height;
     }
 }
@@ -60,7 +58,7 @@ $breakpoint:            $medium-up;
 @mixin responsive-font($font-size-full, $scale-amount: 0.75) {
     font-size: $font-size-full * $scale-amount;
 
-    @media #{$breakpoint} {
+    @include breakpoint(medium) {
         font-size: $font-size-full;
     }
 }
