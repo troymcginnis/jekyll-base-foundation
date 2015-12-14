@@ -125,3 +125,7 @@ I use DOM-based Javascript routing based on http://goo.gl/EUTi53 by Paul Irish. 
 
 - Update project to use Gulp and Browsersync
 - Link project to useful Sass repo
+
+# License
+
+This package is licensed under the terms of the MIT license.
